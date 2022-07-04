@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId = "calling"
+        android:shortcutShortLabel="@string/activity_calling">
+        <capability-binding android:key="actions.intent.CREATE_CALL">
+            <parameter-binding
+                android:key="calling.participant.name"
+                android:value="@array/callingSynonyms">
+            </parameter-binding>
+        </capability-binding>
+    </shortcut>
+
+    <!-- CALLING BII -->
+    <capability android:name="actions.intent.CREATE_CALL">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.callingchj.mycalling"
+            android:targetClass="com.callingchj.mycalling.MainActivity">
+            // john Doe
+            <parameter
+                android:name="call.participant.name"
+                android:key="callName"/>
+
+
+            <!--            // phone number-->
+            <!--            <parameter-->
+            <!--                android:name="call.participant.telephone"-->
+            <!--                android:key="phoneNum"/>-->
+        </intent>
+    </capability>
+
+</shortcuts>

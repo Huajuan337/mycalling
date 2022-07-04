@@ -5,15 +5,22 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.TextureView
+import android.view.View
+import android.widget.TextView
 import com.callingchj.mycalling.BiiIntents.CREATE_CALL
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "CallMainActivity"
+    private var count = 0
+    lateinit var showTime: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        showTime = findViewById<TextView>(R.id.time)
 
         Log.d(TAG,"======= go into the handleintent? ========= %s")
         intent?.handleIntent()
@@ -47,6 +54,15 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(intent)
         }
     }
+
+    // when user clicks the call button will trigger this function, the time will start to run
+    fun calling(view: View) {
+        count ++
+        if (showTime != null){
+            showTime.text = getString(count)
+        }
+    }
+
 
 
 }

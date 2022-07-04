@@ -3,4 +3,8 @@
 
     <string name="activity_calling">Calling</string>
     <string name="activity_unknown">Unknown</string>
+    <string name="calling_someone">Calling</string>
+    <string name="call">Call</string>
+    <string name="_0">0</string>
+    <string name="calling">Calling</string>
 </resources>

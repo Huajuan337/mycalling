@@ -7,22 +7,38 @@ import android.os.Bundle
 import android.util.Log
 import android.view.TextureView
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import com.callingchj.mycalling.BiiIntents.CREATE_CALL
+import com.callingchj.mycalling.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "CallMainActivity"
-    private var count = 0
-    lateinit var showTime: TextView
-
+    private lateinit var  binding1: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        showTime = findViewById<TextView>(R.id.time)
+      //  setContentView(R.layout.activity_main)
 
-        Log.d(TAG,"======= go into the handleintent? ========= %s")
+        binding1 = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding1.root)
+
+        // clickable button connect to the second activity
+        val secondActBt = binding1.buttonCall
+        secondActBt.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+
+//        val secondActBt = findViewById<Button>(R.id.button_call)
+//        secondActBt.setOnClickListener{
+//            val intent = Intent(this, SecondActivity::class.java)
+//            startActivity(intent)
+//        }
+
+        // catch intent through voice info
         intent?.handleIntent()
     }
 
@@ -47,22 +63,12 @@ class MainActivity : AppCompatActivity() {
 
         val callExercise = intent?.extras?.getString(CREATE_CALL)
 
-        Log.d(TAG,"======= go into the handleintent ========= %s")
         if (callExercise != null){
-            Log.d(TAG,"======= go into the handleintent ========= %s")
-//                val intent = Intent(this, MainActivity2::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, SecondActivity::class.java)
+            // HOW TO GET INTENT PERSON INFO??
+            // intent.extras.getString()
+            startActivity(intent)
         }
     }
-
-    // when user clicks the call button will trigger this function, the time will start to run
-    fun calling(view: View) {
-        count ++
-        if (showTime != null){
-            showTime.text = getString(count)
-        }
-    }
-
-
 
 }

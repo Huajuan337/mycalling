@@ -5,11 +5,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.TextureView
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import com.callingchj.mycalling.BiiIntents.CREATE_CALL
+import com.callingchj.mycalling.BiiIntents.CREATE_CALL_NAME
+import com.callingchj.mycalling.BiiIntents.CREATE_CALL_TELE
 import com.callingchj.mycalling.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,19 +21,12 @@ class MainActivity : AppCompatActivity() {
         binding1 = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
 
-        // clickable button connect to the second activity
-        val secondActBt = binding1.buttonCall
-        secondActBt.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
+        // dial a phone by entering phone number
+        binding1.buttonCall.setOnClickListener {
+            val dailIntent = Intent(Intent.ACTION_DIAL)
+            dailIntent.setData(Uri.parse("tel:" + "+86"))
+            startActivity(dailIntent)
         }
-
-
-//        val secondActBt = findViewById<Button>(R.id.button_call)
-//        secondActBt.setOnClickListener{
-//            val intent = Intent(this, SecondActivity::class.java)
-//            startActivity(intent)
-//        }
 
         // catch intent through voice info
         intent?.handleIntent()
@@ -61,14 +51,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleIntent(data: Uri?) {
 
-        val callExercise = intent?.extras?.getString(CREATE_CALL)
+        // get person's name
+        val callIntent = intent?.extras?.getString(CREATE_CALL_NAME)
+        val callIntentTele = intent?.extras?.getString(CREATE_CALL_TELE)
 
-        if (callExercise != null){
-            val intent = Intent(this, SecondActivity::class.java)
-            // HOW TO GET INTENT PERSON INFO??
-            // intent.extras.getString()
-            startActivity(intent)
+        if (callIntentTele != null){
+            Intent(this, SecondActivity::class.java).apply {
+                putExtra("name", callIntent)
+                putExtra("telephone", callIntentTele)
+                // HOW TO GET INTENT PERSON INFO??
+                startActivity(this)
+            }
         }
     }
-
 }

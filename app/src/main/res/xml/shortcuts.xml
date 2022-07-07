@@ -23,11 +23,10 @@
                 android:name="call.participant.name"
                 android:key="callName"/>
 
-
-            <!--            // phone number-->
-            <!--            <parameter-->
-            <!--                android:name="call.participant.telephone"-->
-            <!--                android:key="phoneNum"/>-->
+            // phone number
+            <parameter
+                android:name="call.participant.telephone"
+                android:key="telephone"/>
         </intent>
     </capability>
 

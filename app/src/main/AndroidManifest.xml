@@ -4,6 +4,8 @@
     package="com.callingchj.mycalling">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.read" />
 
     <application
         android:allowBackup="true"

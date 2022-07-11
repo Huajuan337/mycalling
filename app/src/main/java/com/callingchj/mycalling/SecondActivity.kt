@@ -28,6 +28,13 @@ class SecondActivity : AppCompatActivity() {
         val name = intent.extras?.getString("name")
         val tele = intent.extras?.getString("telephone")
 
+
+        // check intent (name and phone number) in the phone book
+
+
+
+
+
         if (tele != null){
             if (name != null){
                 binding2.calling.text = "Do you want to call $name"

@@ -6,9 +6,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.callingchj.mycalling.databinding.ActivityThirdBinding
@@ -36,12 +38,15 @@ class ThirdActivity : AppCompatActivity() {
         }else {
             requestContactPermission()
         }
+
     }
 
     // PICK CONTACT
     private fun pickContact(){
         val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
         startActivityForResult(intent, CONTACT_PICK_CODE)     //被划线的原因是sdk的版本问题
+        Log.d("test: ", "pick phone !!!!!!")
+
     }
 
 
@@ -82,6 +87,7 @@ class ThirdActivity : AppCompatActivity() {
                             //get phone number
                             val contactNumber = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             binding3.contactTv.append("\nPhone: $contactNumber")
+
                         }
                         cursor2.close()
                     }
@@ -124,6 +130,7 @@ class ThirdActivity : AppCompatActivity() {
             }
         }
     }
+
 
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import com.callingchj.mycalling.BiiIntents.CREATE_CALL_NAME
 import com.callingchj.mycalling.BiiIntents.CREATE_CALL_TELE
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(this)
             }
         }
+
+//        val intent = Intent(Intent.ACTION_PICK)
+//        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
+//        startActivityForResult(intent, 111)
 
 
 
@@ -83,13 +88,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
-
-
-    // a fragment show contact list
-
-
 
 }

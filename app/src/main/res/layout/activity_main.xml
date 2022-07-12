@@ -8,21 +8,6 @@
     android:background="#97CCE4"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/call_someone"
-        android:layout_width="139dp"
-        android:layout_height="71dp"
-        android:background="#97CCE4"
-        android:gravity="center"
-        android:text="@string/calling"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
     <Button
         android:id="@+id/button_call"
         android:layout_width="776dp"
@@ -35,6 +20,10 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

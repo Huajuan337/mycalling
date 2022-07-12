@@ -22,11 +22,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding1.root)
 
         // dial a phone by entering phone number
-        binding1.buttonCall.setOnClickListener {
-            val dailIntent = Intent(Intent.ACTION_DIAL)
-            dailIntent.setData(Uri.parse("tel:" + "+86"))
-            startActivity(dailIntent)
+//        binding1.buttonCall.setOnClickListener {
+//            val dailIntent = Intent(Intent.ACTION_DIAL)
+//            dailIntent.setData(Uri.parse("tel:" + "+86"))
+//            startActivity(dailIntent)
+//        }
+
+        binding1.buttonCall.setOnClickListener{
+            Intent(this, ThirdActivity::class.java).apply {
+                startActivity(this)
+            }
         }
+
+
 
         // catch intent through voice info
         intent?.handleIntent()
@@ -55,8 +63,19 @@ class MainActivity : AppCompatActivity() {
         val callIntent = intent?.extras?.getString(CREATE_CALL_NAME)
         val callIntentTele = intent?.extras?.getString(CREATE_CALL_TELE)
 
+//        if (callIntentTele != null){
+//            Intent(this, SecondActivity::class.java).apply {
+//                putExtra("name", callIntent)
+//                putExtra("telephone", callIntentTele)
+//                // HOW TO GET INTENT PERSON INFO??
+//                startActivity(this)
+//            }
+//        }
+
+
+        // show contact list test， jump to third activity
         if (callIntentTele != null){
-            Intent(this, SecondActivity::class.java).apply {
+            Intent(this, ThirdActivity::class.java).apply {
                 putExtra("name", callIntent)
                 putExtra("telephone", callIntentTele)
                 // HOW TO GET INTENT PERSON INFO??
@@ -64,4 +83,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
+
+
+    // a fragment show contact list
+
+
+
 }

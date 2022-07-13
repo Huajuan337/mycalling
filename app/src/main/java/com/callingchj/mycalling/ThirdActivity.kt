@@ -2,21 +2,22 @@ package com.callingchj.mycalling
 
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.util.Log
+import android.widget.SimpleCursorAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.callingchj.mycalling.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
     lateinit var binding3: ActivityThirdBinding
+
+    // convert list to array for showContact format
+    var col = listOf<String>(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                            ContactsContract.CommonDataKinds.Phone.NUMBER,
+                            ContactsContract.CommonDataKinds.Phone._ID).toTypedArray()
 
     // contact permission code
     private val CONTACT_PERMISSION_CODE = 1
@@ -29,75 +30,40 @@ class ThirdActivity : AppCompatActivity() {
         binding3 = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding3.root)
 
-
-        // show phone contact list
-        // check permission first
         if (checkContactPermission()){
-            pickContact()
-
+            // show phone contact list
+            showContact()
         }else {
+            // check permission first
             requestContactPermission()
         }
 
     }
 
-    // PICK CONTACT
-    private fun pickContact(){
-        val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
-        startActivityForResult(intent, CONTACT_PICK_CODE)     //被划线的原因是sdk的版本问题
-        Log.d("test: ", "pick phone !!!!!!")
+    // show all contacts
+    private fun showContact(){
 
-    }
+        // get intent's name, phone number
+        val name = getIntent().extras?.getString("name")
 
-
-    @SuppressLint("Range")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == RESULT_OK){
-            if(resultCode == CONTACT_PICK_CODE){
-                binding3.contactTv.text = ""
-
-                // 游标
-                val cursor1: Cursor
-                val cursor2: Cursor
-
-                // get data from intent
-                val uri = data!!.data
-                cursor1 = contentResolver.query(uri!!, null, null, null, null)!!
-                if (cursor1.moveToFirst()){
-                    val contactId =cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID))
-                    val contactName =cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                    val contactHasNumber =cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-                    val hasPhoneNumber = contactHasNumber.toInt()
-
-                    binding3.contactTv.append("ID: $contactId")
-                    binding3.contactTv.append("Name: $contactName")
+        // what I want to display in the listview: name and phone number -> array
+        var from = listOf<String>(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+                                    ContactsContract.CommonDataKinds.Phone.NUMBER).toTypedArray()
+        var to = intArrayOf (android.R.id.text1, android.R.id.text2 )
 
 
-                    //check if contact has a phone number or not
-                    if (hasPhoneNumber == 1){
-                        cursor2 = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                            null,
-                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId,
-                            null,
-                            null)!!
+        // get the cursor: null in the selection, show all contacts
+        // if you want to filter condition, you can add something in selection, and the argument should add at selectionArgs
+        // if I want to search someone's name -> selection: ${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} LIKE ?
+        //                                       selectionArgs: $ ArrayOf("%input%")  %xxx% any contact contains those characters
+        var result = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, col, "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} LIKE ?",
+            arrayOf("$name"), null)
 
-                        while (cursor2!!.moveToNext()){
-                            //get phone number
-                            val contactNumber = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                            binding3.contactTv.append("\nPhone: $contactNumber")
+        // cursor adapter
+        var adapter = SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, result, from, to, 0)
 
-                        }
-                        cursor2.close()
-                    }
-                    cursor1.close()
-                }
-
-            }
-        }else{
-            Toast.makeText(this, "cancelled", Toast.LENGTH_SHORT).show()
-        }
+        // bind adapter with listview
+        binding3.listview1.adapter = adapter
     }
 
 
@@ -109,10 +75,8 @@ class ThirdActivity : AppCompatActivity() {
 
     // if no permission, request permission
     private fun requestContactPermission() {
-
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS), CONTACT_PERMISSION_CODE)
     }
-
 
 
     override fun onRequestPermissionsResult(
@@ -121,16 +85,13 @@ class ThirdActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val tele = intent.extras?.getString("telephone")
-        if (CONTACT_PERMISSION_CODE == 1){
+
+        if (CONTACT_PERMISSION_CODE == requestCode){
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)){
-                pickContact()
+                showContact()
             }else{
                 Toast.makeText(this, "Sorry you cannot get the permission to access the user's data", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
-
 }

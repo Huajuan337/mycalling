@@ -23,22 +23,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding1.root)
 
         // dial a phone by entering phone number
-//        binding1.buttonCall.setOnClickListener {
-//            val dailIntent = Intent(Intent.ACTION_DIAL)
-//            dailIntent.setData(Uri.parse("tel:" + "+86"))
-//            startActivity(dailIntent)
-//        }
-
-        binding1.buttonCall.setOnClickListener{
-            Intent(this, ThirdActivity::class.java).apply {
-                startActivity(this)
-            }
+        binding1.buttonCall.setOnClickListener {
+            val dailIntent = Intent(Intent.ACTION_DIAL)
+            dailIntent.setData(Uri.parse("tel:" + "+86"))
+            startActivity(dailIntent)
         }
+
+//        binding1.buttonCall.setOnClickListener{
+//            Intent(this, ThirdActivity::class.java).apply {
+//                startActivity(this)
+//            }
+//        }
 
 //        val intent = Intent(Intent.ACTION_PICK)
 //        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
 //        startActivityForResult(intent, 111)
-
 
 
         // catch intent through voice info
@@ -88,5 +87,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  setContentView(R.layout.activity_main)
-
         binding1 = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
 
@@ -83,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                 putExtra("name", callIntent)
                 putExtra("telephone", callIntentTele)
                 // HOW TO GET INTENT PERSON INFO??
+                Log.d(TAG,"======= Third activity ========= %s")
                 startActivity(this)
             }
         }

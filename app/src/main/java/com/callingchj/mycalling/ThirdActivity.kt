@@ -2,10 +2,14 @@ package com.callingchj.mycalling
 
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import android.widget.SimpleCursorAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -13,7 +17,7 @@ import com.callingchj.mycalling.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
     lateinit var binding3: ActivityThirdBinding
-
+    private val TAG = "CallThirdActivity"
     // convert list to array for showContact format
     var col = listOf<String>(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                             ContactsContract.CommonDataKinds.Phone.NUMBER,
@@ -22,13 +26,12 @@ class ThirdActivity : AppCompatActivity() {
     // contact permission code
     private val CONTACT_PERMISSION_CODE = 1
 
-    // contact pick code (select the person to call)
-    private val CONTACT_PICK_CODE = 2
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding3 = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding3.root)
+
+        Log.d(TAG,"======= At the third Activity ========= %s")
 
         if (checkContactPermission()){
             // show phone contact list
@@ -41,6 +44,7 @@ class ThirdActivity : AppCompatActivity() {
     }
 
     // show all contacts
+    @SuppressLint("Range")
     private fun showContact(){
 
         // get intent's name, phone number
@@ -49,7 +53,7 @@ class ThirdActivity : AppCompatActivity() {
         // what I want to display in the listview: name and phone number -> array
         var from = listOf<String>(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                                     ContactsContract.CommonDataKinds.Phone.NUMBER).toTypedArray()
-        var to = intArrayOf (android.R.id.text1, android.R.id.text2 )
+        var to = intArrayOf(android.R.id.text1, android.R.id.text2 )
 
 
         // get the cursor: null in the selection, show all contacts
@@ -64,6 +68,20 @@ class ThirdActivity : AppCompatActivity() {
 
         // bind adapter with listview
         binding3.listview1.adapter = adapter
+
+        binding3.listview1.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(Intent.ACTION_CALL)
+            if(result!!.moveToPosition(position)){
+                val phoneNum = result.getString(result.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                val name = result.getString(result.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+//                Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
+                intent.putExtra("telephone", phoneNum)
+
+                intent.data = Uri.parse("tel:$phoneNum")
+                intent.putExtra("name", name)
+                startActivity(intent)
+            }
+        }
     }
 
 

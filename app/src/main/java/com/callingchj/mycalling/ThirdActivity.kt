@@ -63,6 +63,8 @@ class ThirdActivity : AppCompatActivity() {
         var result = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, col, "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} LIKE ?",
             arrayOf("$name"), null)
 
+        Log.d(TAG, "result； " + result?.getString(0))
+
         // cursor adapter
         var adapter = SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, result, from, to, 0)
 

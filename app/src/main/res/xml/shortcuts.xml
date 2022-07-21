@@ -30,4 +30,26 @@
         </intent>
     </capability>
 
+    <!-- widgets -->
+<!--    <capability android:name="actions.intent.CREATE_CALL">-->
+<!--        <app-widget-->
+<!--            android:identifier="CREATE_CALL"-->
+<!--            android:targetClass="com.callingchj.mycalling.TestWidget"-->
+<!--            android:targetPackage="com.callingchj.mycalling">-->
+<!--            <parameter-->
+<!--                android:name="call.participant.name"-->
+<!--                android:key="callName"-->
+<!--                android:required="true">-->
+<!--            </parameter>-->
+<!--            <extra android:name="hasTts" android:value="true"/>-->
+<!--        </app-widget>-->
+
+<!--        &lt;!&ndash; Fallback intent with no parameters required to successfully execute.&ndash;&gt;-->
+<!--        <intent-->
+<!--            android:identifier="CREATE_CALL_FALLBACK"-->
+<!--            android:action="android.intent.action.VgitIEW"-->
+<!--            android:targetClass="com.callingchj.mycalling.CallingWidget">-->
+<!--        </intent>-->
+<!--    </capability>-->
+
 </shortcuts>

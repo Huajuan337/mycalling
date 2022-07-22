@@ -34,7 +34,7 @@
 <!--    <capability android:name="actions.intent.CREATE_CALL">-->
 <!--        <app-widget-->
 <!--            android:identifier="CREATE_CALL"-->
-<!--            android:targetClass="com.callingchj.mycalling.TestWidget"-->
+<!--            android:targetClass="com.callingchj.mycalling.CallingWidget"-->
 <!--            android:targetPackage="com.callingchj.mycalling">-->
 <!--            <parameter-->
 <!--                android:name="call.participant.name"-->

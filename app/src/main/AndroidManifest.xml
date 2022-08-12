@@ -18,6 +18,10 @@
         android:theme="@style/Theme.MyCalling"
         tools:targetApi="31">
 
+        <activity
+            android:name=".ContactListActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".CallingWidget"
             android:exported="false">
@@ -27,13 +31,17 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/calling_widget_provider" />
+                android:resource="@xml/calling_widget_info" />
         </receiver>
 
         <service
-            android:name=".WidgetRemoteViewsService"
-            android:exported="false"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+            android:name=".CallingWidget"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.assistant.appactions.widgets.PIN_APP_WIDGET" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".ThirdActivity"

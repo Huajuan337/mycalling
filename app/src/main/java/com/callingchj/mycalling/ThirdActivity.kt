@@ -53,7 +53,7 @@ class ThirdActivity : AppCompatActivity() {
         // what I want to display in the listview: name and phone number -> array
         var from = listOf<String>(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                                     ContactsContract.CommonDataKinds.Phone.NUMBER).toTypedArray()
-        var to = intArrayOf(android.R.id.text1, android.R.id.text2 )
+        var to = intArrayOf(R.id.item_name, R.id.item_number)
 
 
         // get the cursor: null in the selection, show all contacts
@@ -63,10 +63,9 @@ class ThirdActivity : AppCompatActivity() {
         var result = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, col, "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} LIKE ?",
             arrayOf("$name"), null)
 
-        Log.d(TAG, "result； " + result?.getString(0))
 
         // cursor adapter
-        var adapter = SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, result, from, to, 0)
+        var adapter = SimpleCursorAdapter(this, R.layout.contact_item, result, from, to, 0)
 
         // bind adapter with listview
         binding3.listview1.adapter = adapter
@@ -76,7 +75,6 @@ class ThirdActivity : AppCompatActivity() {
             if(result!!.moveToPosition(position)){
                 val phoneNum = result.getString(result.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                 val name = result.getString(result.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-//                Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
                 intent.putExtra("telephone", phoneNum)
 
                 intent.data = Uri.parse("tel:$phoneNum")
@@ -85,6 +83,8 @@ class ThirdActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 
     // check permission

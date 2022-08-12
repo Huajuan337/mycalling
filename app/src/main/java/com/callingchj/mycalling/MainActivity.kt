@@ -1,5 +1,7 @@
 package com.callingchj.mycalling
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +15,11 @@ import com.callingchj.mycalling.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "CallMainActivity"
-    private lateinit var  binding1: ActivityMainBinding
+//    private lateinit var  binding1: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding1 = ActivityMainBinding.inflate(layoutInflater)
+        val binding1 = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding1.root)
 
         // dial a phone by entering phone number
@@ -27,23 +29,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(dailIntent)
         }
 
-//        binding1.buttonCall.setOnClickListener{
-//            Intent(this, ThirdActivity::class.java).apply {
-//                startActivity(this)
-//            }
-//        }
-
-//        val intent = Intent(Intent.ACTION_PICK)
-//        intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
-//        startActivityForResult(intent, 111)
-
+        binding1.buttonContact.setOnClickListener{
+            Intent(this, ContactListActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
 
         // catch intent through voice info
         intent?.handleIntent()
     }
 
     private fun Intent.handleIntent() {
-        Log.d(TAG,"======= go into the actions? ========= %s")
         when (action) {
             // When the BII is matched, Intent.Action_VIEW will be used
             Intent.ACTION_VIEW -> handleIntent(data)
@@ -54,7 +50,6 @@ class MainActivity : AppCompatActivity() {
     // when new intent comes, uit will update the new intent view rather than the old one
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        Log.d(TAG,"======= go into the new handleintent? ========= %s")
         intent?.handleIntent()
     }
 
@@ -65,23 +60,11 @@ class MainActivity : AppCompatActivity() {
         val callIntent = intent?.extras?.getString(CREATE_CALL_NAME)
         val callIntentTele = intent?.extras?.getString(CREATE_CALL_TELE)
 
-//        if (callIntentTele != null){
-//            Intent(this, SecondActivity::class.java).apply {
-//                putExtra("name", callIntent)
-//                putExtra("telephone", callIntentTele)
-//                // HOW TO GET INTENT PERSON INFO??
-//                startActivity(this)
-//            }
-//        }
-
-
-        // show contact list test， jump to third activity
-        if (callIntentTele != null){
+        if (callIntent != null){
             Intent(this, ThirdActivity::class.java).apply {
                 putExtra("name", callIntent)
                 putExtra("telephone", callIntentTele)
                 // HOW TO GET INTENT PERSON INFO??
-                Log.d(TAG,"======= Third activity ========= %s")
                 startActivity(this)
             }
         }

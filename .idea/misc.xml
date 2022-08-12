@@ -3,21 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.1365" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.1365" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/drawable/ic_perm_identity.xml" value="0.2405" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_contact.xml" value="0.40860215053763443" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_contact2.xml" value="0.5442708333333334" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_contact_list.xml" value="0.5699614890885751" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_contacts.xml" value="0.5442708333333334" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_fourth.xml" value="0.5442708333333334" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_main2.xml" value="0.26646403242147926" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_second.xml" value="0.33" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/activity_third.xml" value="0.26218487394957984" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/calling_widget.xml" value="0.33" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/calling_widget.xml" value="0.33425925925925926" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/calling_widget_provider.xml" value="0.5479166666666667" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/contact_fragment.xml" value="0.4661458333333333" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/contact_item.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/fragment_contact_list.xml" value="0.4671875" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/landscape_activity_main.xml" value="0.246875" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/new_app_widget.xml" value="0.5270833333333333" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/test_widget.xml" value="0.25" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/widget_item.xml" value="0.5384615384615384" />
-        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/xml/appwidget_provider.xml" value="0.5120370370370371" />
+        <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/layout/widget_item.xml" value="0.5479166666666667" />
         <entry key="..\:/Users/t-huachen/AndroidStudioProjects/MyCalling2/app/src/main/res/xml/shortcut.xml" value="0.26266464032421477" />
+        <entry key="..\:/Users/t-huachen/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_2.xml" value="0.5223958333333333" />
       </map>
     </option>
   </component>

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.callingchj.mycalling.databinding.ActivitySecondBinding
@@ -30,11 +31,6 @@ class SecondActivity : AppCompatActivity() {
 
 
         // check intent (name and phone number) in the phone book
-
-
-
-
-
         if (tele != null){
             if (name != null){
                 binding2.calling.text = "Do you want to call $name"

@@ -18,12 +18,9 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.callingchj.mycalling"
             android:targetClass="com.callingchj.mycalling.MainActivity">
-            // john Doe
             <parameter
                 android:name="call.participant.name"
                 android:key="callName"/>
-
-            // phone number
             <parameter
                 android:name="call.participant.telephone"
                 android:key="telephone"/>
@@ -34,22 +31,25 @@
 <!--    <capability android:name="actions.intent.CREATE_CALL">-->
 <!--        <app-widget-->
 <!--            android:identifier="CREATE_CALL"-->
-<!--            android:targetClass="com.callingchj.mycalling.TestWidget"-->
+<!--            android:targetClass="com.callingchj.mycalling.CallingWidgetProvider"-->
 <!--            android:targetPackage="com.callingchj.mycalling">-->
 <!--            <parameter-->
 <!--                android:name="call.participant.name"-->
 <!--                android:key="callName"-->
-<!--                android:required="true">-->
-<!--            </parameter>-->
+<!--                android:required="true"/>-->
+<!--            <parameter-->
+<!--                android:name="call.participant.telephone"-->
+<!--                android:key="telephone"/>-->
 <!--            <extra android:name="hasTts" android:value="true"/>-->
 <!--        </app-widget>-->
 
 <!--        &lt;!&ndash; Fallback intent with no parameters required to successfully execute.&ndash;&gt;-->
 <!--        <intent-->
 <!--            android:identifier="CREATE_CALL_FALLBACK"-->
-<!--            android:action="android.intent.action.VgitIEW"-->
+<!--            android:action="android.intent.action.VIEW"-->
 <!--            android:targetClass="com.callingchj.mycalling.CallingWidget">-->
 <!--        </intent>-->
 <!--    </capability>-->
 
 </shortcuts>
+
